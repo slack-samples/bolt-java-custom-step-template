@@ -1,8 +1,20 @@
 # Bolt for Java Template App
 
-This is a generic Bolt for Java template app used to build out Slack apps.
+This is a Bolt for Java template app used to build custom steps for use in
+[Workflow Builder](https://api.slack.com/start#workflow-builder).
 
-Before getting started, make sure you have a development workspace where you have permissions to install apps. If you don’t have one setup, go ahead and [create one](https://slack.com/create).
+## Setup
+
+Before getting started, first make sure you have a development workspace where
+you have permission to install apps. **Please note that the features in this
+project require that the workspace be part of
+[a Slack paid plan](https://slack.com/pricing).**
+
+### Developer Program
+
+Join the [Slack Developer Program](https://api.slack.com/developer-program) for
+exclusive access to sandbox environments for building and testing your apps,
+tooling, and resources created to help developers build and grow.
 
 ## Installation
 
@@ -31,7 +43,7 @@ export SLACK_APP_TOKEN=<your-app-token>
 
 ```zsh
 # Clone this project onto your machine
-git clone https://github.com/slack-samples/bolt-java-starter-template.git
+git clone https://github.com/WilliamBergamin/bolt-java-custom-step-template.git
 
 # Change into this project directory
 cd bolt-java-template
@@ -78,6 +90,16 @@ gradle run
 
 **NOTE**: If you chose to use Gradle as your build tool you can remove the `pom.xml` file from this project.
 
+## Using Steps in Workflow Builder
+
+With your server running, the `Sample step` is now ready for use in
+[Workflow Builder](https://api.slack.com/start#workflow-builder)! Add it as a
+custom step in a new or existing workflow, then run the workflow while your app
+is running.
+
+For more information on creating workflows and adding custom steps, read more
+[here](https://slack.com/help/articles/17542172840595-Create-a-new-workflow-in-Slack).
+
 ## Project Structure
 
 ### `manifest.json`
@@ -90,7 +112,7 @@ gradle run
 
 ### `/listeners`
 
-Every incoming request is routed to a "listener". Inside this directory, we group each listener based on the Slack Platform feature used, so `/listeners/shortcuts` handles incoming [Shortcuts](https://api.slack.com/interactivity/shortcuts) requests, `/listeners/views` handles [View submissions](https://api.slack.com/reference/interaction-payloads/views#view_submission), and so on.
+Every incoming request is routed to a "listener". Inside this directory, we group each listener based on the Slack Platform feature used, so `/listeners/actions` handles incoming [Actions](https://docs.slack.dev/reference/interaction-payloads/block_actions-payload) requests and `/listeners/functions` handles [Workflow Steps](https://docs.slack.dev/workflows/workflow-steps).
 
 ### `/logback.xml`
 
@@ -99,29 +121,3 @@ Every incoming request is routed to a "listener". Inside this directory, we grou
 ### Tests
 
 This project provides some sample unit tests. They can be found in `src/test`. They are to be used as examples to show how unit tests can be implemented. **As you modify this project don't hesitate to modify, add, or remove these tests.**
-
-## App Distribution / OAuth
-
-Only implement OAuth if you plan to distribute your application across multiple workspaces. A separate `OAuthMain.java` file can be found with relevant OAuth settings.
-
-When using OAuth, Slack requires a public URL where it can send requests. In this template app, we've used [`ngrok`](https://ngrok.com/download). Checkout [this guide](https://ngrok.com/docs#getting-started-expose) for setting it up.
-
-Start `ngrok` to access the app on an external network and create a redirect URL for OAuth.
-
-```
-ngrok http 3000
-```
-
-This output should include a forwarding address for `http` and `https` (we'll use `https`). It should look something like the following:
-
-```
-Forwarding   https://3cb89939.ngrok.io -> http://localhost:3000
-```
-
-Navigate to **OAuth & Permissions** in your app configuration and click **Add a Redirect URL**. The redirect URL should be set to your `ngrok` forwarding address with the `slack/oauth/callback` path appended. For example:
-
-```
-https://3cb89939.ngrok.io/slack/oauth/callback
-```
-
-*NOTE:* if you do not require OAuth you can remove all `OAUTH DEPENDENCIES` in the `pom.xml` or `build.gradle` files, along with `src/main/java/OAuthMain.java`
