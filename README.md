@@ -1,4 +1,4 @@
-# Bolt for Java Template App
+# Bolt for Java Custom Step Template
 
 This is a Bolt for Java template app used to build custom steps for use in
 [Workflow Builder](https://api.slack.com/start#workflow-builder).
@@ -112,7 +112,7 @@ For more information on creating workflows and adding custom steps, read more
 
 ### `/listeners`
 
-Every incoming request is routed to a "listener". Inside this directory, we group each listener based on the Slack Platform feature used, so `/listeners/actions` handles incoming [Actions](https://docs.slack.dev/reference/interaction-payloads/block_actions-payload) requests and `/listeners/functions` handles [Workflow Steps](https://docs.slack.dev/workflows/workflow-steps).
+Every incoming request is routed to a "listener". Inside this directory, we group each listener based on the Slack Platform feature used, so `/listeners/actions` handles incoming [Actions](https://docs.slack.dev/reference/interaction-payloads/block_actions-payload) requests and `/listeners/functions` handles [Custom Steps](https://docs.slack.dev/workflows/workflow-steps).
 
 ### `/logback.xml`
 

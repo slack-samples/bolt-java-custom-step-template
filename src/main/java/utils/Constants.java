@@ -6,12 +6,12 @@ public class Constants {
     public static class BlockIds {
         private BlockIds() {}
 
-        public static final String WORKFLOW_STEP_BUTTON = "workflow-step-button-block";
+        public static final String CUSTOM_STEP_BUTTON = "custom-step-button-block";
     }
 
     public static class ActionIds {
         private ActionIds() {}
 
-        public static final String WORKFLOW_STEP_BUTTON = "workflow-step-button-action";
+        public static final String CUSTOM_STEP_BUTTON = "custom-step-button-action";
     }
 }

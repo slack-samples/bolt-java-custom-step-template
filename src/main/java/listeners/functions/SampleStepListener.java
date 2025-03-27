@@ -30,8 +30,8 @@ public class SampleStepListener implements BoltEventHandler<FunctionExecutedEven
                 context.client().chatPostMessage(r -> r.channel(
                                 event.getEvent().getInputs().get("user_id").asString())
                         .text(":wave: hey")
-                        .blocks(asBlocks(actions(a -> a.blockId(Constants.BlockIds.WORKFLOW_STEP_BUTTON)
-                                .elements(asElements(button(b -> b.actionId(Constants.ActionIds.WORKFLOW_STEP_BUTTON)
+                        .blocks(asBlocks(actions(a -> a.blockId(Constants.BlockIds.CUSTOM_STEP_BUTTON)
+                                .elements(asElements(button(b -> b.actionId(Constants.ActionIds.CUSTOM_STEP_BUTTON)
                                         .value("clicked")
                                         .text(plainText("click me!")))))))));
             } catch (Exception e) {
