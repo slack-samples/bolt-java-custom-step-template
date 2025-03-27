@@ -1,0 +1,28 @@
+version: 2
+updates:
+  - package-ecosystem: "gradle"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    ignore:
+      - dependency-name: "tyrus-standalone-client"
+        versions: [ "2.x" ]
+    groups:
+      bolt-gradle:
+        patterns:
+          - "com.slack.api:bolt*"
+  - package-ecosystem: "maven"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    ignore:
+      - dependency-name: "tyrus-standalone-client"
+        versions: [ "2.x" ]
+    groups:
+      bolt-maven:
+        patterns:
+          - "com.slack.api:bolt*"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
