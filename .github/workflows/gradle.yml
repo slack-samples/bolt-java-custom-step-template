@@ -2,7 +2,7 @@ name: Lint & Test with Gradle
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
 
 jobs:
@@ -10,7 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        java-version: ['11', '17']
+        java-version:
+          - 17
+          - 21
 
     steps:
       - uses: actions/checkout@v4
@@ -18,8 +20,8 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: ${{ matrix.java-version }}
-          distribution: 'adopt'
+          distribution: "adopt"
       - name: Lint
         run: gradle spotlessCheck
       - name: Build & Test
-        run: gradle test -x spotlessApply
+        run: gradle test -x spotlessApply --info
