@@ -27,13 +27,17 @@ public class SampleStepListener implements BoltEventHandler<FunctionExecutedEven
         this.app.executorService().submit(() -> {
             context.logger.info("event: {}", event);
             try {
-                context.client().chatPostMessage(r -> r.channel(
-                                event.getEvent().getInputs().get("user_id").asString())
-                        .text(":wave: hey")
-                        .blocks(asBlocks(actions(a -> a.blockId(Constants.BlockIds.CUSTOM_STEP_BUTTON)
-                                .elements(asElements(button(b -> b.actionId(Constants.ActionIds.CUSTOM_STEP_BUTTON)
-                                        .value("clicked")
-                                        .text(plainText("click me!")))))))));
+                context.client()
+                        .chatPostMessage(r -> r.channel(event.getEvent()
+                                        .getInputs()
+                                        .get("user_id")
+                                        .asString())
+                                .text(":wave: hey")
+                                .blocks(asBlocks(actions(a -> a.blockId(Constants.BlockIds.CUSTOM_STEP_BUTTON)
+                                        .elements(asElements(
+                                                button(b -> b.actionId(Constants.ActionIds.CUSTOM_STEP_BUTTON)
+                                                        .value("clicked")
+                                                        .text(plainText("click me!")))))))));
             } catch (Exception e) {
                 context.logger.error("Failed to call chatPostMessage API (error: {})", e.getMessage(), e);
             }

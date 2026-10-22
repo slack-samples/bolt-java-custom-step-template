@@ -30,10 +30,11 @@ public class CustomStepButtonActionListener implements BlockActionHandler {
                             .asString());
             try {
                 ctx.complete(outputs);
-                ctx.client().chatUpdate(r -> r.channel(
-                                req.getPayload().getContainer().getChannelId())
-                        .ts(req.getPayload().getContainer().getMessageTs())
-                        .text("Thank you :heart_hands: for clicking a button!"));
+                ctx.client()
+                        .chatUpdate(
+                                r -> r.channel(req.getPayload().getContainer().getChannelId())
+                                        .ts(req.getPayload().getContainer().getMessageTs())
+                                        .text("Thank you :heart_hands: for clicking a button!"));
             } catch (Exception e) {
                 ctx.logger.error("Failed to call complete() or views.update API (error: {})", e.getMessage(), e);
             }
